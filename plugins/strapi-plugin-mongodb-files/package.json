@@ -1,0 +1,37 @@
+{
+  "name": "strapi-plugin-mongodb-files",
+  "version": "1.0.0",
+  "description": "Strapi plugin for files stored in MongoDB",
+  "strapi": {
+    "name": "MongoDB files",
+    "icon": "plug",
+    "description": "Strapi plugin for files stored in MongoDB"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "author": {
+    "name": "Andrey Hohutkin",
+    "email": "Andrey.Hohutkin@gmail.com",
+    "url": "https://github.com/AHgpuK/strapi-plugin-mongodb-files"
+  },
+  "maintainers": [
+    {
+      "name": "Andrey Hohutkin",
+      "email": "Andrey.Hohutkin@gmail.com",
+      "url": "https://github.com/AHgpuK/strapi-plugin-mongodb-files"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AHgpuK/strapi-plugin-mongodb-files.git"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
