@@ -16,18 +16,18 @@
   "author": {
     "name": "Andrey Hohutkin",
     "email": "Andrey.Hohutkin@gmail.com",
-    "url": "https://github.com/AHgpuK/strapi-plugin-mongodb-files"
+    "url": "https://github.com/AHgPuK/strapi-mongodb-files"
   },
   "maintainers": [
     {
       "name": "Andrey Hohutkin",
       "email": "Andrey.Hohutkin@gmail.com",
-      "url": "https://github.com/AHgpuK/strapi-plugin-mongodb-files"
+      "url": "https://github.com/AHgPuK/strapi-mongodb-files"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/AHgpuK/strapi-plugin-mongodb-files.git"
+    "url": "git://github.com/AHgPuK/strapi-mongodb-files.git"
   },
   "engines": {
     "node": ">=10.0.0",

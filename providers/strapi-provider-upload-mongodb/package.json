@@ -1,8 +1,8 @@
 {
   "author": {
-    "name": "Strapi team",
-    "email": "hi@strapi.io",
-    "url": "http://strapi.io"
+    "name": "Andrey Hohutkin",
+    "email": "Andrey.Hohutkin@gmail.com",
+    "url": "https://github.com/AHgPuK/strapi-mongodb-files"
   },
   "bugs": {
     "url": "https://github.com/strapi/strapi/issues"
@@ -17,7 +17,6 @@
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "gitHead": "f0028241c8845ee385f2bbc6333052c028666f47",
   "homepage": "http://strapi.io",
   "keywords": [
     "upload",
@@ -27,15 +26,15 @@
   "main": "./lib",
   "maintainers": [
     {
-      "name": "Strapi team",
-      "email": "hi@strapi.io",
-      "url": "http://strapi.io"
+      "name": "Andrey Hohutkin",
+      "email": "Andrey.Hohutkin@gmail.com",
+      "url": "https://github.com/AHgPuK/strapi-mongodb-files"
     }
   ],
   "name": "strapi-provider-upload-mongodb",
   "repository": {
     "type": "git",
-    "url": "git://github.com/strapi/strapi.git"
+    "url": "git://github.com/AHgPuK/strapi-mongodb-files.git"
   },
   "scripts": {
     "test": "echo \"no tests yet\""
