@@ -1,12 +1,16 @@
 # strapi-provider-mongodb-files
 
-## Resources
+Strapi provider for file uploading to MongoDB instance
+
+#Installation process see at: 
+
+[strapi-mongodb-files repo with an installation guide](https://github.com/AHgPuK/strapi-mongodb-files#readme)
+
+### Resources
 
 - [MIT License](LICENSE.md)
 
-## Links
-
-- [Home repo with an installation guide](https://github.com/AHgPuK/strapi-mongodb-files#readme)
+### Links
 
 - [Strapi website](http://strapi.io/)
 - [Strapi community on Slack](http://slack.strapi.io)
