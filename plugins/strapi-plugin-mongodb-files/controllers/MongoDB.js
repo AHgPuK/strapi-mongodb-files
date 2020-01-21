@@ -1,5 +1,14 @@
-const {GridFSBucket} = require('mongodb');
-const {extensions: Extensions} = require('libmime/lib/mimetypes');
+const Path = require('path');
+const modulesDir = Path.join(process.cwd(), 'node_modules');
+let modulesPath = '';
+
+if (__dirname.indexOf(modulesDir) == -1)
+{
+	modulesPath = `${modulesDir}/`;
+}
+
+const {GridFSBucket} = require(modulesPath + 'mongodb');
+const {extensions: Extensions} = require(modulesPath + 'libmime/lib/mimetypes');
 
 module.exports = {
 	fetchFile: function (ctx) {

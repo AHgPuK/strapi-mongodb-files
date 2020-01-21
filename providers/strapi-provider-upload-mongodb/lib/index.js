@@ -3,9 +3,17 @@
 /**
  * Module dependencies
  */
+const Path = require('path');
+const modulesDir = Path.join(process.cwd(), 'node_modules');
+let modulesPath = '';
+
+if (__dirname.indexOf(modulesDir) == -1)
+{
+	modulesPath = `${modulesDir}/`;
+}
 
 // Public node modules.
-const Promise = require('bluebird');
+const Promise = require(modulesPath + 'bluebird');
 
 const Deferred = function () {
 
@@ -51,7 +59,7 @@ const getGridFSBucket = function (config) {
 //   "size": "294.56"
 // }
 
-const MongoDB = require('mongodb');
+const MongoDB = require(modulesPath + 'mongodb');
 const GridFSBucket = MongoDB.GridFSBucket;
 
 
