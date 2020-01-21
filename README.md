@@ -16,23 +16,28 @@ npm i strapi-provider-upload-mongodb strapi-plugin-mongodb-files`
 Open Strapi admin => Plugins => FILES UPLOAD => Settings
 
 From "Providers" dropdown box choose "MongoDB files"
+
+Any uploaded file will be accessible from /files/[filename]
 ```
 
 ##Settings
 
 ```
-You can configure a desired path for uploaded files
+You can configure a desired path for uploaded files instead default which is /files
 Edit strapi/config/custom.json
 Add mongoDbFilesUploadDir variable to the top level next to the "myCustomConfiguration".
+Note, you don't need to add trailing slash /
 
 {
   "myCustomConfiguration": "This configuration is accessible through strapi.config.myCustomConfiguration",
   "mongoDbFilesUploadDir": "files"
 }
+```
 
 **Notes**
-
 ```
-Changing a mongoDbFilesUploadDir after file uploads will result with an inaccessibility of previously uploaded files.
+1. Uploaded files are case-sensitive
+2. No file duplication is allowed
+3. Changing a mongoDbFilesUploadDir after file uploads will result with an inaccessibility of previously uploaded files.
 To fix it you need to replace the old path to the new one in "fs" collection.
 ```
