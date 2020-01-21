@@ -15,7 +15,7 @@ module.exports = {
 
 		const uploadDir = strapi.config.mongoDbFilesUploadDir || 'files';
 
-		const {fileName, fileExt, uploadDirFromRequest} = ctx.params;
+		const {fileName, fileExt, uploadDir: uploadDirFromRequest} = ctx.params;
 
 		if (uploadDir != uploadDirFromRequest)
 		{
