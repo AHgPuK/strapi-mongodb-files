@@ -10,34 +10,42 @@ if (__dirname.indexOf(modulesDir) == -1)
 const {GridFSBucket} = require(modulesPath + 'mongodb');
 const {extensions: Extensions} = require(modulesPath + 'libmime/lib/mimetypes');
 
-module.exports = {
-	fetchFile: function (ctx) {
+strapi.app.use(async function (ctx, next) {
 
-		const uploadDir = strapi.config.mongoDbFilesUploadDir || 'files';
+  const uploadDir = strapi.config.mongoDbFilesUploadDir || 'files';
 
-		const {fileName, fileExt, uploadDir: uploadDirFromRequest} = ctx.params;
+  const {method, url} = ctx.req;
 
-		if (uploadDir != uploadDirFromRequest)
-		{
-			return;
-		}
+  if (method != 'GET')
+  {
+    return await next();
+  }
 
-		const conn = strapi.admin.models.administrator.base.connections[0];
-		const gridFSBucket = new GridFSBucket(conn.db);
+  if (url.indexOf('/' + uploadDir + '/') != 0)
+  {
+    return await next();
+  }
 
-		const downloadStream = gridFSBucket.openDownloadStreamByName(`${fileName}.${fileExt}`);
-		const contentType = Extensions[fileExt.toLowerCase()];
+  const fileName = url.replace('/' + uploadDir + '/', '').split('?')[0];
 
-		if (contentType)
-		{
-			ctx.append('Content-Type', contentType);
-		}
+  const conn = strapi.admin.models.administrator.base.connections[0];
+  const gridFSBucket = new GridFSBucket(conn.db);
 
-		ctx.body = downloadStream.on('error', function (err) {
+  const downloadStream = gridFSBucket.openDownloadStreamByName(fileName);
 
-			// Suppress long stacktrace
-			delete err.stack;
+  const fileExt = Path.extname(fileName).replace('.', '');
 
-		});
-	}
-}
+  const contentType = Extensions[fileExt.toLowerCase()];
+
+  if (contentType)
+  {
+    ctx.append('Content-Type', contentType);
+  }
+
+  ctx.body = downloadStream.on('error', function (err) {
+
+    // Suppress long stacktrace
+    delete err.stack;
+
+  });
+})

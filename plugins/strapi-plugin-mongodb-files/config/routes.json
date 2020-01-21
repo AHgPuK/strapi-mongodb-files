@@ -1,12 +1,5 @@
 {
   "routes": [
-    {
-      "method": "GET",
-      "path": "/:uploadDir/:fileName.:fileExt",
-      "handler": "MongoDB.fetchFile",
-      "config": {
-        "prefix": false
-      }
-    }
+    
   ]
 }
