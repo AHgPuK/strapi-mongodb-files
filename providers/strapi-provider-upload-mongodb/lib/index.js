@@ -54,7 +54,6 @@ const getGridFSBucket = function (config) {
 const MongoDB = require('mongodb');
 const GridFSBucket = MongoDB.GridFSBucket;
 
-const IMAGES_PATH = '/images';
 
 /* eslint-disable no-unused-vars */
 module.exports = {
@@ -74,6 +73,7 @@ module.exports = {
 
 		return {
 			upload: (file) => {
+				const uploadDir = strapi.config.mongoDbFilesUploadDir || 'files';
 
 				return Promise.resolve()
 				.then(async function () {
@@ -97,7 +97,7 @@ module.exports = {
 
 					uploadStream.once('finish', function () {
 
-						file.url = `${IMAGES_PATH}/${file.name}`;
+						file.url = `/${uploadDir}/${file.name}`;
 
 						strapi.log.info(`${file.url} uploaded`);
 

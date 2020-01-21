@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/images/:fileName.:fileExt",
+      "path": "/:uploadDir/:fileName.:fileExt",
       "handler": "MongoDB.fetchFile",
       "config": {
         "prefix": false

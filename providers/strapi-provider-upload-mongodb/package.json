@@ -42,5 +42,5 @@
   "strapi": {
     "isProvider": true
   },
-  "version": "3.0.0-beta.18.4"
+  "version": "3.0.0-beta.18.4.1"
 }
