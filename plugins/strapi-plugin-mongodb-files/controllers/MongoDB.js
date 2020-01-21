@@ -7,11 +7,10 @@ module.exports = {
 		const conn = strapi.admin.models.administrator.base.connections[0];
 		const gridFSBucket = new GridFSBucket(conn.db);
 
-		const filename = ctx.params.filename;
-		const filenameExt = ctx.params.ext;
+		const {fileName, fileExt} = ctx.params;
 
-		const downloadStream = gridFSBucket.openDownloadStreamByName(`${filename}.${filenameExt}`);
-		const contentType = Extensions[filenameExt.toLowerCase()];
+		const downloadStream = gridFSBucket.openDownloadStreamByName(`${fileName}.${fileExt}`);
+		const contentType = Extensions[fileExt.toLowerCase()];
 
 		if (contentType)
 		{

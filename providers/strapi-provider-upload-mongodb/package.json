@@ -5,7 +5,7 @@
     "url": "https://github.com/AHgPuK/strapi-mongodb-files"
   },
   "bugs": {
-    "url": "https://github.com/strapi/strapi/issues"
+    "url": "https://github.com/AHgPuK/strapi-mongodb-files/issues"
   },
   "bundleDependencies": false,
   "deprecated": false,
@@ -17,7 +17,7 @@
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "homepage": "http://strapi.io",
+  "homepage": "https://github.com/AHgPuK/strapi-mongodb-files",
   "keywords": [
     "upload",
     "strapi"

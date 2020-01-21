@@ -28,6 +28,14 @@ const getFileId = function (file) {
 	return file.sha256 + '/' + file.hash;
 }
 
+const getGridFSBucket = function (config) {
+
+	const conn = strapi.admin.models.administrator.base.connections[0];
+	const gridFSBucket = new GridFSBucket(conn.db, config.collectionName);
+
+	return gridFSBucket;
+}
+
 // file struct
 // {
 //   "tmpPath": "C:\\Users\\Homeuser\\AppData\\Local\\Temp\\upload_20fa5c6da2888890d632046a74a9b6c6",
@@ -70,8 +78,7 @@ module.exports = {
 				return Promise.resolve()
 				.then(async function () {
 
-					const conn = strapi.admin.models.administrator.base.connections[0];
-					const gridFSBucket = new GridFSBucket(conn.db, config.collectionName);
+					const gridFSBucket = getGridFSBucket(config);
 
 					const count = (await gridFSBucket.find({
 						filename: file.name,
@@ -92,7 +99,7 @@ module.exports = {
 
 						file.url = `${IMAGES_PATH}/${file.name}`;
 
-						console.log(`${file.url} uploaded`)
+						strapi.log.info(`${file.url} uploaded`);
 
 						promise.fulfill();
 					});
@@ -113,8 +120,7 @@ module.exports = {
 				return Promise.resolve()
 				.then(function () {
 
-					const conn = strapi.admin.models.administrator.base.connections[0];
-					const gridFSBucket = new GridFSBucket(conn.db, config.collectionName);
+					const gridFSBucket = getGridFSBucket(config);
 
 					return gridFSBucket.delete(getFileId(file))
 				})
