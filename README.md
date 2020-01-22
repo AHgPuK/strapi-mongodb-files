@@ -38,6 +38,7 @@ Note, you don't need to add trailing slash /
 ```
 1. Uploaded files are case-sensitive
 2. No file duplication is allowed
-3. Changing a mongoDbFilesUploadDir after file uploads will result with an inaccessibility of previously uploaded files.
-To fix it you need to replace the old path to the new one in "fs" collection.
+3. Changing a mongoDbFilesUploadDir after file uploads 
+   will result with an inaccessibility of previously uploaded files at "Files Upload" of strapi.
+To fix it you need to replace the old path to the new one in "upload_file" collection of strapi.
 ```
