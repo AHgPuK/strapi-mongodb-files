@@ -8,7 +8,7 @@ The plugin's one provides an access to the previously uploaded files by URL.
 ##Installation
 
 ```   
-npm i strapi-provider-upload-mongodb strapi-plugin-mongodb-files`   
+npm i strapi-provider-upload-mongodb strapi-plugin-mongodb-files
 ```
 
 ##Configure
