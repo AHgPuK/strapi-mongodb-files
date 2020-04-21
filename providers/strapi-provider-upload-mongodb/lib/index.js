@@ -98,18 +98,18 @@ module.exports = {
 				.then(async function () {
 
 					const gridFSBucket = getGridFSBucket(config);
-					const filename = file.name + file.ext;
+					file.name = file.name + file.ext;
 
 					const count = (await gridFSBucket.find({
-						filename: filename,
+						filename: file.name,
 					}).toArray()).length;
 
 					if (count > 0)
 					{
-						throw new Error(`The file ${filename} already exists`);
+						throw new Error(`The file ${file.name} already exists`);
 					}
 
-					const uploadStream = gridFSBucket.openUploadStreamWithId(getFileId(file), filename, {
+					const uploadStream = gridFSBucket.openUploadStreamWithId(getFileId(file), file.name, {
 						contentType: file.mime,
 					});
 
@@ -117,7 +117,7 @@ module.exports = {
 
 					uploadStream.once('finish', function () {
 
-						file.url = `/${uploadDir}/${filename}`;
+						file.url = `/${uploadDir}/${file.name}`;
 
 						strapi.log.info(`${file.url} uploaded`);
 
@@ -140,7 +140,7 @@ module.exports = {
 				const gridFSBucket = getGridFSBucket(config);
 
 				const result = (await gridFSBucket.find({
-					filename: file.name + file.ext,
+					filename: file.name,
 				}).toArray());
 
 				const id = result && result[0] && result[0]._id || null;
