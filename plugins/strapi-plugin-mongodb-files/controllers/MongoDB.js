@@ -12,7 +12,8 @@ const {extensions: Extensions} = require(modulesPath + 'libmime/lib/mimetypes');
 
 strapi.app.use(async function (ctx, next) {
 
-  const uploadDir = strapi.config.mongoDbFilesUploadDir || 'files';
+  const config = strapi.plugins.upload.config;
+  const uploadDir = config.providerOptions && config.providerOptions.mongoDbFilesUploadDir || 'files';
 
   const {method, url} = ctx.req;
 

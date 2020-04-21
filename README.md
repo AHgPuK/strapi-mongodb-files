@@ -13,12 +13,19 @@ npm i strapi-provider-upload-mongodb strapi-plugin-mongodb-files
 
 ##Configure
 ```
-Open Strapi admin => Plugins => FILES UPLOAD => Settings
 
-From "Providers" dropdown box choose "MongoDB files"
+To enable the provider, create or edit the file at ./extensions/upload/config/settings.json
 
-Any uploaded file will be accessible from /files/[filename]
+{
+  "provider": "mongodb",
+  "providerOptions": {
+    "collectionName": "fs",
+    "mongoDbFilesUploadDir": "files"
+  }
+}
+
 ```
+The doc source: https://strapi.io/documentation/3.0.0-beta.x/plugins/upload.html#using-a-provider
 
 ##Settings
 

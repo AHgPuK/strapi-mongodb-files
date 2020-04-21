@@ -92,7 +92,7 @@ module.exports = {
 
 		return {
 			upload: (file) => {
-				const uploadDir = strapi.config.mongoDbFilesUploadDir || 'files';
+				const uploadDir = config.mongoDbFilesUploadDir || 'files';
 
 				return Promise.resolve()
 				.then(async function () {
