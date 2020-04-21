@@ -3,6 +3,7 @@
 /**
  * Module dependencies
  */
+//const Crypto = require('crypto');
 const Path = require('path');
 const modulesDir = Path.join(process.cwd(), 'node_modules');
 let modulesPath = '';
@@ -32,8 +33,18 @@ const Deferred = function () {
 	return promise;
 }
 
+// function niceHash(buffer) {
+// 	return Crypto
+// 	.createHash('sha256')
+// 	.update(buffer)
+// 	.digest('base64')
+// 	.replace(/=/g, '')
+// 	.replace(/\//g, '-')
+// 	.replace(/\+/, '_');
+// }
+
 const getFileId = function (file) {
-	return file.sha256 + '/' + file.hash;
+	return file.hash;
 }
 
 const getGridFSBucket = function (config) {
@@ -123,15 +134,17 @@ module.exports = {
 
 			},
 
-			delete: (file) => {
+			delete: async (file) => {
 
-				return Promise.resolve()
-				.then(function () {
+				const gridFSBucket = getGridFSBucket(config);
 
-					const gridFSBucket = getGridFSBucket(config);
+				const result = (await gridFSBucket.find({
+					filename: file.name,
+				}).toArray());
 
-					return gridFSBucket.delete(getFileId(file))
-				})
+				const id = result && result[0] && result[0]._id || null;
+
+				return gridFSBucket.delete(id);
 			}
 		};
 	}
