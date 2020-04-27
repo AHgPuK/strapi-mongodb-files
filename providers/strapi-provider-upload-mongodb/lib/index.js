@@ -98,7 +98,6 @@ module.exports = {
 				.then(async function () {
 
 					const gridFSBucket = getGridFSBucket(config);
-					file.name = file.name + file.ext;
 
 					const count = (await gridFSBucket.find({
 						filename: file.name,
