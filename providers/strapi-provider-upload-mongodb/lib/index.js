@@ -92,6 +92,7 @@ module.exports = {
 
 		return {
 			upload: (file) => {
+				const TAG = 'MongoDB files provider upload:';
 				const uploadDir = config.mongoDbFilesUploadDir || 'files';
 
 				return Promise.resolve()
@@ -137,13 +138,20 @@ module.exports = {
 
 			delete: async (file) => {
 
+				const TAG = 'MongoDB files provider delete:';
 				const gridFSBucket = getGridFSBucket(config);
 
 				const result = (await gridFSBucket.find({
-					filename: file.name,
+					filename: file.name || file.hash,
 				}).toArray());
 
 				const id = result && result[0] && result[0]._id || null;
+
+				if (!id)
+				{
+					strapi.log.info(TAG, `File ${file.name} not found`);
+					return;
+				}
 
 				return gridFSBucket.delete(id);
 			}
