@@ -1,10 +1,12 @@
 const Path = require('path');
+const URL = require('url');
+
 const modulesDir = Path.join(process.cwd(), 'node_modules');
 let modulesPath = '';
 
 if (__dirname.indexOf(modulesDir) == -1)
 {
-	modulesPath = `${modulesDir}/`;
+  modulesPath = `${modulesDir}/`;
 }
 
 const {GridFSBucket} = require(modulesPath + 'mongodb');
@@ -27,7 +29,8 @@ strapi.app.use(async function (ctx, next) {
     return await next();
   }
 
-  const fileName = url.replace('/' + uploadDir + '/', '').split('?')[0];
+  const parsed = URL.parse(url);
+  const fileName = unescape(Path.basename(parsed.pathname));
 
   const conn = strapi.admin.models.administrator.base.connections[0];
   const gridFSBucket = new GridFSBucket(conn.db);
