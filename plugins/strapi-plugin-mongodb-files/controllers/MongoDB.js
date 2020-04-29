@@ -30,7 +30,7 @@ strapi.app.use(async function (ctx, next) {
   }
 
   const parsed = URL.parse(url);
-  const fileName = unescape(Path.basename(parsed.pathname));
+  const fileName = decodeURIComponent(Path.basename(parsed.pathname));
 
   const conn = strapi.admin.models.administrator.base.connections[0];
   const gridFSBucket = new GridFSBucket(conn.db);
