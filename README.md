@@ -5,13 +5,13 @@ The package contains two modules working separately.
 The provider's one is attended for upload handling within an admin section.
 The plugin's one provides an access to the previously uploaded files by URL.
 
-##Installation
+## Installation
 
 ```   
 npm i strapi-provider-upload-mongodb strapi-plugin-mongodb-files
 ```
 
-##Configure
+## Configure
 ```
 
 To enable the provider, create or edit the file at ./extensions/upload/config/settings.json
@@ -27,7 +27,7 @@ To enable the provider, create or edit the file at ./extensions/upload/config/se
 ```
 The doc source: https://strapi.io/documentation/3.0.0-beta.x/plugins/upload.html#using-a-provider
 
-##Settings
+## Settings
 
 ```
 You can configure a desired path for uploaded files instead default which is /files
