@@ -20,7 +20,8 @@ To enable the provider, create or edit the file at ./extensions/upload/config/se
   "provider": "mongodb",
   "providerOptions": {
     "collectionName": "fs",
-    "mongoDbFilesUploadDir": "files"
+    "mongoDbFilesUploadDir": "files",
+    "read": "secondaryPreferred"
   }
 }
 

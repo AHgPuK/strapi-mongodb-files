@@ -16,6 +16,7 @@ strapi.app.use(async function (ctx, next) {
 
   const config = strapi.plugins.upload.config;
   const uploadDir = config.providerOptions && config.providerOptions.mongoDbFilesUploadDir || 'files';
+  const readPreference = config.providerOptions && config.providerOptions.read || null;
 
   const {method, url} = ctx.req;
 
@@ -35,7 +36,9 @@ strapi.app.use(async function (ctx, next) {
   const conn = strapi.admin.models.administrator.base.connections[0];
   const gridFSBucket = new GridFSBucket(conn.db);
 
-  const downloadStream = gridFSBucket.openDownloadStreamByName(fileName);
+  const downloadStream = gridFSBucket.openDownloadStreamByName(fileName, {
+    readPreference: readPreference,
+  });
 
   const fileExt = Path.extname(fileName).replace('.', '');
 
