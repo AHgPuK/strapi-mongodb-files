@@ -26,7 +26,7 @@ To enable the provider, create or edit the file at ./extensions/upload/config/se
 }
 
 ```
-The doc source: https://strapi.io/documentation/3.0.0-beta.x/plugins/upload.html#using-a-provider
+The doc source: https://strapi.io/documentation/v3.x/plugins/upload.html#using-a-provider
 
 ## Settings
 
