@@ -49,7 +49,7 @@ const getFileId = function (file) {
 
 const getGridFSBucket = function (config) {
 
-	const conn = strapi.admin.models.administrator.base.connections[0];
+	const conn = (strapi.admin.models.administrator || strapi.admin.models.permission).base.connections[0];
 	const gridFSBucket = new GridFSBucket(conn.db, config.collectionName);
 
 	return gridFSBucket;

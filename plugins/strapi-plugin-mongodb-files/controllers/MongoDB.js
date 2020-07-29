@@ -33,7 +33,7 @@ strapi.app.use(async function (ctx, next) {
   const parsed = URL.parse(url);
   const fileName = decodeURIComponent(Path.basename(parsed.pathname));
 
-  const conn = strapi.admin.models.administrator.base.connections[0];
+  const conn = (strapi.admin.models.administrator || strapi.admin.models.permission).base.connections[0];
   const gridFSBucket = new GridFSBucket(conn.db);
 
   const downloadStream = gridFSBucket.openDownloadStreamByName(fileName, {
