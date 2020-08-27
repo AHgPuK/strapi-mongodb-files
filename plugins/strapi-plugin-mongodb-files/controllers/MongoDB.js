@@ -10,7 +10,6 @@ if (__dirname.indexOf(modulesDir) == -1)
 }
 
 const {GridFSBucket} = require(modulesPath + 'mongodb');
-const {extensions: Extensions} = require(modulesPath + 'libmime/lib/mimetypes');
 
 strapi.app.use(async function (ctx, next) {
 
@@ -40,19 +39,13 @@ strapi.app.use(async function (ctx, next) {
     readPreference: readPreference,
   });
 
-  const fileExt = Path.extname(fileName).replace('.', '');
-
-  const contentType = Extensions[fileExt.toLowerCase()];
-
-  if (contentType)
-  {
-    ctx.append('Content-Type', contentType);
-  }
+  downloadStream.once('data', function (chunk) {
+    ctx.append('Content-Type', downloadStream.s.file.contentType || 'application/octet-stream');
+  })
 
   ctx.body = downloadStream.on('error', function (err) {
-
+    downloadStream.removeAllListeners('data');
     // Suppress long stacktrace
     delete err.stack;
-
   });
 })
