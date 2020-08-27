@@ -55,6 +55,12 @@ const getGridFSBucket = function (config) {
 	return gridFSBucket;
 }
 
+const getFilename = function (file) {
+	const filename = file.name || file.hash;
+
+	return filename.endsWith(file.ext) ? filename : `${filename}${file.ext}`;
+}
+
 // file struct
 // {
 //   "tmpPath": "C:\\Users\\Homeuser\\AppData\\Local\\Temp\\upload_20fa5c6da2888890d632046a74a9b6c6",
@@ -97,12 +103,11 @@ module.exports = {
 
 				return Promise.resolve()
 				.then(async function () {
-
 					const gridFSBucket = getGridFSBucket(config);
-					const filename = file.name || file.hash;
+					const filename = getFilename(file)
 
 					const count = (await gridFSBucket.find({
-						filename: filename,
+						filename,
 					}).toArray()).length;
 
 					if (count > 0)
@@ -142,7 +147,7 @@ module.exports = {
 				const gridFSBucket = getGridFSBucket(config);
 
 				const result = (await gridFSBucket.find({
-					filename: file.name || file.hash,
+					filename: getFilename(file),
 				}).toArray());
 
 				const id = result && result[0] && result[0]._id || null;
