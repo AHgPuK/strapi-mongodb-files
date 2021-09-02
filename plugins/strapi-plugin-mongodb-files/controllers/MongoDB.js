@@ -33,11 +33,11 @@ strapi.app.use(async function (ctx, next) {
   const fileName = decodeURIComponent(Path.basename(parsed.pathname));
 
   const conn = (strapi.admin.models.administrator || strapi.admin.models.permission).base.connections[0];
-  const gridFSBucket = new GridFSBucket(conn.db);
-
-  const downloadStream = gridFSBucket.openDownloadStreamByName(fileName, {
+  const gridFSBucket = new GridFSBucket(conn.db, {
     readPreference: readPreference,
   });
+
+  const downloadStream = gridFSBucket.openDownloadStreamByName(fileName);
 
   downloadStream.once('data', function (chunk) {
     ctx.append('Content-Type', downloadStream.s.file.contentType || 'application/octet-stream');
