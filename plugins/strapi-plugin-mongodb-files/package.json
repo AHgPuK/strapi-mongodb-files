@@ -7,12 +7,11 @@
     "icon": "plug",
     "description": "Strapi plugin for files stored in MongoDB"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
+    "lru-cache": "^6.0.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "author": {
     "name": "Andrey Hohutkin",
     "email": "Andrey.Hohutkin@gmail.com",
