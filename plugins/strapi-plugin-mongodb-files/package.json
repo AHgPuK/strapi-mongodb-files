@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-mongodb-files",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "Strapi plugin for files stored in MongoDB",
   "strapi": {
     "name": "MongoDB files",
