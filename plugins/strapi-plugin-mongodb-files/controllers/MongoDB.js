@@ -108,6 +108,7 @@ const Plugin = async function () {
     const uploadDir = config.providerOptions && config.providerOptions.mongoDbFilesUploadDir || 'files';
     const readPreference = config.providerOptions && config.providerOptions.read || null;
     const lruConfig = config.providerOptions && config.providerOptions.lruConfig || null;
+    const maxAge = lruConfig?.manualMaxAge || 0;
 
     if (lruConfig )
     {
@@ -177,7 +178,27 @@ const Plugin = async function () {
         return ctx.response.notFound(null, file.error);
       }
 
+      file.expiredAt = Date.now() + maxAge;
       lruCache.set(fileName, file);
+    }
+    else
+    {
+      if (maxAge)
+      {
+        if (file.expiredAt < Date.now())
+        {
+          Promise.resolve()
+          .then(async function () {
+            const file = await getFile(gridFSBucket, fileName);
+
+            if (!file.error)
+            {
+              file.expiredAt = Date.now() + maxAge;
+              lruCache.set(fileName, file);
+            }
+          })
+        }
+      }
     }
 
     ctx.append('Content-Type', file.contentType || 'application/octet-stream');
